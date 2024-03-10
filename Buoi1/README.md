@@ -53,5 +53,66 @@
     
 - VD minh họa:
 
+```java
+  public class User{
+    private IPhone iphone;
+    public User(){
+      iphone = new IPhone(); 
+    }
+}
+```
+- Khi bạn tạo ra một User, bạn sẽ tạo ra thêm 1 IPhone đi kèm với User đó. Lúc này, IPhone tồn tại mang ý nghĩa là dependency (phụ thuộc) của User.
+- Vấn đề: Các Class không nên phụ thuộc vào các kế thừa cấp thấp, mà nên phụ thuộc vào Abstraction (lớp trừu tượng).
+
+```java
+  
+  public interface Phone {
+    
+  }
 
   
+  public class IPhone implements Phone {
+    
+  }
+
+  public class User{
+      private Phone phone;
+
+      public User(Phone phone){
+        this.phone = phone;
+      }
+
+      public static void main(String[] args) {
+        Phone phone = new Iphone();
+        User user = new User(phone); 
+      }
+  }
+```
+- Dependency Injection là việc các Object nên phụ thuộc vào các Abstract Class và thể hiện chi tiết của nó sẽ được Inject vào đối tượng lúc runtime.
+- Tuy nhiên, lúc này, khi code bạn sẽ phải kiêm thêm nhiệm vụ Inject dependency (tiêm sự phụ thuộc). Thử tưởng tượng một Class có hàng chục dependency thì bạn sẽ phải tự tay inject từng ý cái. Việc này lại dẫn tới khó khăn trong việc code, quản lý code và dependency
+
+```java
+  public static void main(String[] args) {
+      Phone phone = new Iphone();
+      Hair hair = new Undercut();
+      Outfit outfit = new Vest();
+      User user = new User(phone, hair, outfit);
+  }
+
+```
+
+- Lúc này, chúng ta sẽ phải nghĩ tới nguyên lý hoạt động của IoC:
+  - Định nghĩa trước toàn bộ các dependency có trong Project, mô tả nó và tống nó vào 1 cái kho (container) và giao cho một quản lý không gian lưu trữ (context). 
+  - Bất kỳ các Class nào khi khởi tạo, nó cần dependency gì, thì sẽ tự tìm trong container rồi inject vào đối tượng.
+
+## 1 số annotation hỗ trợ
+- Nguyên lý hoạt động của Spring Boot: SpringBoot tạo ra 1 container có tên là “ApplicationContext”, nó có khả năng quản lý 1 không gian lưu trữ gọi là “Context”, khi được tạo ra container sẽ tìm kiếm các “bean” trong Project và đưa vào context lưu trữ
+- Bean: thực chất chỉ là một đối tượng (object) được quản lý bởi Spring container thay vì các đối tượng (object) thông thường khác được quản lý bởi các dev qua từ khóa khai báo new 
+
+- 1 số annotation ứng dụng DI và IoC trong Spring Boot:
+  - @Component: 
+    - Dùng để đánh dấu các lớp giúp container biết lớp đó là 1 bean
+    - Phương thức: getBean() thì container sẽ tìm trong context có bean nào có tên đó không và lấy ra 
+    - Class được đánh dấu là Component sẽ tự tạo ra 1 instance và đưa vào ApplicationContext để quản lý
+  - @Autowired:
+    - Đánh dấu các dependancy là Autowired giúp spring tự inject 1 instance của depandency được đánh dấu là bean bằng @Component
