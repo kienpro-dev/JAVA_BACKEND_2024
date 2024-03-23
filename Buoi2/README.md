@@ -4,7 +4,7 @@
 - View: Là phần hiển thị dữ liệu cho người dùng. View có nhiệm vụ nhận dữ liệu từ Model và hiển thị chúng theo cách thích hợp. Điều này bao gồm việc tạo giao diện người dùng và hiển thị dữ liệu trên đó.
 - Controller: Là thành phần trung gian giữa Model và View. Controller nhận yêu cầu từ người dùng thông qua giao diện (View), sau đó xử lý yêu cầu, tương tác với Model để truy xuất hoặc cập nhật dữ liệu, và sau đó trả kết quả về cho View để hiển thị cho người dùng.
 
-[](https://github.com/techmely/hoc-lap-trinh/assets/29374426/4f3a0d22-eebe-49bd-bc32-9df03fe8ae6b)
+![](https://github.com/techmely/hoc-lap-trinh/assets/29374426/4f3a0d22-eebe-49bd-bc32-9df03fe8ae6b)
 
 - Luồng hoạt động:
   - User gửi request từ client tới server.
