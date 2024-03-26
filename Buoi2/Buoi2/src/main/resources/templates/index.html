@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:object="${user}">
+        <p th:text="*{getName()}"></p>
+        <p th:text="*{getAge()}"></p>
+    </div>
+
+    <div th:each="u : ${list}">
+        <p th:text="|Name: *{u.getName()}|"></p>
+        Age:
+        <p th:text="|Age: *{u.getAge()}|"></p>
+    </div>
+
+    <form th:action="@{/about}" method="post">
+        <input name="name" type="text">
+        <input name="age" type="text">
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>

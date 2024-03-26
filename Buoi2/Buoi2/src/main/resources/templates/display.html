@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:each="u : ${list}">
+        <p th:text="|Name: *{u.getName()}|"></p>
+        Age:
+        <p th:text="|Age: *{u.getAge()}|"></p>
+    </div>
+</body>
+</html>
