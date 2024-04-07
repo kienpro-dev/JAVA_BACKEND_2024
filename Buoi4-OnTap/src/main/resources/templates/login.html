@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{/login}" method="post">
+        <input name="username" type="text" placeholder="Username">
+        <input name="password" type="password" placeholder="Password">
+        <button type="submit">Dang nhap</button>
+<!--        <a href="http://localhost:8080/regist">Dang ky</a>-->
+        <p th:text="${error}"></p>
+    </form>
+
+    <form th:action="@{/regist}" method="get">
+        <button type="submit">Dang ky</button>
+    </form>
+</body>
+</html>
