@@ -47,7 +47,7 @@ public ResponseEntity<?> createUser(@RequestBody User user) {
 ```
 
 ## Custom Exception 
-![](https://drive.google.com/file/d/1RbX1wIT1zvxVpnoDKHo3CUHeTGqYQZ6D/view)
+![](https://scontent.fhan3-2.fna.fbcdn.net/v/t1.15752-9/437171757_3609817752567904_8365595940026728620_n.png?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEjgxswa_Fek0J1f5GCPUZi_hPcePJPpUr-E9x48k-lSm8twwIj4kPOtH0pxCYcrA3mJJBW42y7fVt2kQpTIymX&_nc_ohc=vfUEKuP7ZHQAb7aGrmY&_nc_ht=scontent.fhan3-2.fna&oh=03_AdVb5OsqcjNvo1D-rX6t_87V6MTpGSgyybS5xOu5ZxLXyg&oe=6642503F)
 - Xử lý ngoại lệ (Exception handling) là một phần quan trọng của việc phát triển ứng dụng, bao gồm cả việc xây dựng các Restful API trong Spring Boot
 - @RestControllerAdvice thường được sử dụng cùng với @ExceptionHandler để can thiệp vào việc xử lý của các @RestController.
 - @ResponseStatus cho phép bạn định nghĩa HTTP status code mà bạn muốn trả về cho người dùng. 
