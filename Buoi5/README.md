@@ -51,13 +51,40 @@ public ResponseEntity<?> createUser(@RequestBody User user) {
 - Xử lý ngoại lệ (Exception handling) là một phần quan trọng của việc phát triển ứng dụng, bao gồm cả việc xây dựng các Restful API trong Spring Boot
 - @RestControllerAdvice thường được sử dụng cùng với @ExceptionHandler để can thiệp vào việc xử lý của các @RestController.
 - @ResponseStatus cho phép bạn định nghĩa HTTP status code mà bạn muốn trả về cho người dùng. 
-[Xem thêm các HTTP Status Code phổ biến](https://topdev.vn/blog/http-status-code-la-gi/?amp&utm_source=google&utm_medium=cpc&utm_campaign=topdev&utm_content=performance&gad_source=1&gclid=Cj0KCQjw2uiwBhCXARIsACMvIU3R15eGzM5VSYmlfhgSzMsjNMGx_XScadeCyePppGq23f57pDdGUZsaAsCSEALw_wcB)
+- [Xem thêm các HTTP Status Code phổ biến](https://topdev.vn/blog/http-status-code-la-gi/?amp&utm_source=google&utm_medium=cpc&utm_campaign=topdev&utm_content=performance&gad_source=1&gclid=Cj0KCQjw2uiwBhCXARIsACMvIU3R15eGzM5VSYmlfhgSzMsjNMGx_XScadeCyePppGq23f57pDdGUZsaAsCSEALw_wcB)
 
 - Mục đích của việc custom exception để gửi về người dùng thông tin hữu ích hơn theo ý hiểu của người lập trình
 - Các bước custom exception để xử lý:
-B1: Tạo các model, controller cho ứng dụng
-B2: Tạo đối tượng ErrorRespone để gửi thông tin lỗi về client
-B3: Tự định nghĩa 1 lớp Exception để tiến hành custom theo ý của người lập trình
-B4: Tạo lớp ExceptionHandler dùng các annotation để bắt lỗi trong chương trình
-B5: Test thử bằng postman
+  - B1: Tạo các model, controller cho ứng dụng
+  - B2: Tạo đối tượng ErrorRespone để gửi thông tin lỗi về client
+    ```java
+    public class ErrorResponse {
+        private String message;
+        private HttpStatus httpStatus; 
+
+        // Constructor, get, set
+    }  
+    ```
+  - B3: Tự định nghĩa 1 lớp Exception để tiến hành custom theo ý của người lập trình
+     ```java
+    public class NotFoundException extends RuntimeException {
+        private String message;
+        private HttpStatus httpStatus; 
+
+        // Constructor, get, set
+    }
+    ```
+  - B4: Tạo lớp ExceptionHandler dùng các annotation để bắt lỗi trong chương trình
+    ```java
+    
+    @RestControllerAdvice
+    public class CustomExceptionHandler {
+        @ExceptionHandler(NotFoundException.class)
+        // @ResponseStatus(HttpStatus.NOT_FOUND)
+        public ErrorResponse handleNotFoundException(NotFoundException ex, WebRequest request) {
+            return new ErrorResponse(ex.getMessage(), ex.getStatus());
+        }
+    }
+    ```
+  - B5: Test thử bằng postman
 
