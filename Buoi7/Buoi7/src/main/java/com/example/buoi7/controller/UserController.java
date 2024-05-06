@@ -3,6 +3,8 @@ package com.example.buoi7.controller;
 import com.example.buoi7.dto.UserDto;
 import com.example.buoi7.entity.User;
 import com.example.buoi7.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,9 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class UserController {
-    @Autowired
-    private UserRepository userRepository;
+//    @Autowired
+//    private UserRepository userRepository;
+
+    private final UserRepository userRepository;
 
     @GetMapping("/users")
     public ResponseEntity<?> findAllUser(@RequestParam(required = false) Integer page,

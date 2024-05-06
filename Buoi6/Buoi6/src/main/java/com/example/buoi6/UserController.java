@@ -59,10 +59,10 @@ public class UserController {
     @PatchMapping("/user/{id}")
     public ResponseEntity<?> updateUser2(@PathVariable int id, @RequestBody User user) {
         Optional<User> currentUser = userRepository.findById(id);
-        if(user.getUsername() != null) {
+        if (user.getUsername() != null) {
             currentUser.get().setUsername(user.getUsername());
         }
-        if(user.getPassword() != null) {
+        if (user.getPassword() != null) {
             currentUser.get().setPassword(user.getPassword());
         }
         userRepository.save(currentUser.get());
