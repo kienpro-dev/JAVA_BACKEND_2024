@@ -100,3 +100,28 @@ public class AccountDTO {
     private String email;
 }
 ```
+
+## 3. Tự tạo 1 annotation
+- Bạn có thể định nghĩa một Annotation bằng cách tạo một interface và đánh dấu nó bằng Annotation @interface
+- @Retention(RetentionPolicy.RUNTIME) chỉ ra rằng Annotation này sẽ được giữ lại và có thể được truy cập trong thời gian chạy. 
+- @Target(ElementType.TYPE) chỉ ra rằng Annotation này có thể được áp dụng cho các class.
+
+- Ví dụ tạo annotation cho restful api 
+```java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@RestController
+@RequestMapping("/api/v1")
+public @interface RestApiV1 {
+}
+```
+- Ví dụ tạo annotation lấy ra thông tin người đang đăng nhập    
+```java
+@Target({ElementType.PARAMETER, ElementType.ANNOTATION_TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@AuthenticationPrincipal
+public @interface CurrentUser {
+}
+```
