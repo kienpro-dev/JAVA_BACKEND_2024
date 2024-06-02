@@ -21,11 +21,11 @@ public class JwtUtils {
     @Value("${jwt.due_refreshToken}")
     private Long dueRefreshToken;
 
-    public String generateTokenByUsername(String username) {
+    public String generateTokenByUsername(String username, Long time) {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + expirationMs))
+                .setExpiration(new Date(new Date().getTime() + time))
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }

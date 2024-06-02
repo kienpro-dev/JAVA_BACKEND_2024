@@ -14,6 +14,6 @@ public class ScheduleMail {
 
     @Scheduled(fixedRate = 1)
     void sentMailSchedule() throws MessagingException {
-        emailService.sentEmail("hoangphuong270703@gmail.com", "Hello");
+        emailService.sentEmail("tienkiennropro@gmail.com", "Hello");
     }
 }

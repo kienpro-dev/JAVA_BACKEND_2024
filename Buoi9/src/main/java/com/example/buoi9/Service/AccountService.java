@@ -50,7 +50,7 @@ public class AccountService {
     public Account createUsingCloudinary(AccountDto accountDTO) {
         Account account = new Account();
         account.setUsername(accountDTO.getUsername());
-        account.setPassword(account.getPassword());
+        account.setPassword(accountDTO.getPassword());
         try {
             String url = cloudinaryUtil.getUrlFromFile(accountDTO.getAvatar());
             account.setAvatar(url);

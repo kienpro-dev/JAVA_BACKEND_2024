@@ -1,6 +1,7 @@
 package com.example.buoi9.controller;
 
 import com.example.buoi9.Service.AccountService;
+import com.example.buoi9.annotation.RestApi;
 import com.example.buoi9.dto.AccountDto;
 import com.example.buoi9.entity.Account;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
-@RestController
+@RestApi
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountService accountService;

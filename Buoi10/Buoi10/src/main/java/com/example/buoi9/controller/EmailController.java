@@ -16,6 +16,6 @@ public class EmailController {
 
     @PostMapping("/send")
     public ResponseEntity<?> sendMail(@RequestParam String to, @RequestParam String message) throws MessagingException {
-        return ResponseEntity.ok(emailService.sentEmail(to, message));
+        return ResponseEntity.ok().body(emailService.sentEmail(to, message));
     }
 }
